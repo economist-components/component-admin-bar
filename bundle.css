@@ -1,5 +1,4 @@
-
-@import '@economist/component-bar-wrapper/index.css';.link-button--styled {
+.link-button--styled {
   display: inline-block;
   padding: 20px
     20px;
@@ -15,33 +14,234 @@
   text-decoration: none;
   background-color: #fff;
   border-radius: 0.3em;
-}.link-button--disabled {
+}
+
+.link-button--disabled {
   cursor: default;
   background-color: #c0c0c0;
-}.link-button--shadow {
+}
+
+.link-button--shadow {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-}/* stylelint-disable selector-no-type */.link-button__group svg {
+}
+
+/* stylelint-disable selector-no-type */
+
+.link-button__group svg {
   vertical-align: bottom;
-}/* stylelint-enable selector-no-type */.link-button__icon {
+}
+
+/* stylelint-enable selector-no-type */
+
+.link-button__icon {
   vertical-align: middle;
-}.admin-bar .bar-wrapper--container {
+}
+
+/* stylelint-disable custom-property-pattern, number-max-precision */
+
+@font-face {
+  font-family: EconSans;
+  font-weight: 300;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecosans-lig.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecosans-lig.woff') format('woff');
+}
+
+@font-face {
+  font-family: EconSans;
+  font-style: normal;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecosans-reg.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecosans-reg.woff') format('woff');
+}
+
+@font-face {
+  font-family: EconSans;
+  font-weight: 700;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecosans-bol.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecosans-bol.woff') format('woff');
+}
+
+@font-face {
+  font-family: EconSans;
+  font-style: italic;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecosans-ita.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecosans-ita.woff') format('woff');
+}
+
+@font-face {
+  font-family: MiloSerifPro;
+  font-style: normal;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecoserif-reg.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecoserif-reg.woff') format('woff');
+}
+
+@font-face {
+  font-family: MiloSerifPro;
+  font-style: italic;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecoserif-ita.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecoserif-ita.woff') format('woff');
+}
+
+@font-face {
+  font-family: MiloSerifPro;
+  font-weight: 500;
+  src:
+    /* Super Modern Browsers */
+    url('/assets/ecoserif-med.woff2') format('woff2'),
+    /* Pretty Modern Browsers */
+    url('/assets/ecoserif-med.woff') format('woff');
+}
+
+/**
+ * Modular scale for type.
+ */
+
+:root {
+  /** Modular scale **/
+  /* http://www.modularscale.com/?20&px&1.125&web&text */  /* Major second */
+
+  /** Line heights **/
+
+  /* Font: Halifax Regular */
+
+  /* Font: Halifax Bold */
+
+  /* Font: Halifax Light */
+
+  /* Font: Ff Milo Serif Pro Med Italic */
+
+  /* Font: Ff Milo Serif Pro */
+
+  /* Font: FF Milo Serif OT Medium */
+
+  /** Letter spacing **/
+  /* Font: Halifax Regular */
+
+  /* Font: Halifax Bold */
+
+  /* Font: Halifax Light */
+
+  /* Font: Ff Milo Serif Pro Med Italic */
+
+  /* Font: Ff Milo Serif Pro */
+
+  /* Font: FF Milo Serif OT Medium */
+}
+
+/* stylelint-disable selector-no-type */
+
+html {
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+@media screen and (min-width: 500px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * Colors
+ */
+
+/**
+ * Css grid variables
+ */
+
+/* stylelint-disable number-max-precision */
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-indent: -30000px;
+  background-repeat: no-repeat;
+}
+
+.bar-wrapper {
+  padding: 1.45em
+    18px;
+  padding: 1.45em
+    1rem;
+  font-family: 'EconSans', Tahoma, sans-serif;
+  font-size: 0.79012em;
+  line-height: 1.34;
+}
+
+.bar-wrapper--close {
+  /* Not magic numbers.
+   * The icon is supposed to have 1em of height, but it currently has
+   * 1em of useless space surrounding it. */
+  width: 2em;
+  height: 2em;
+}
+
+.bar-wrapper--close-wrapper {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  margin: -1em;
+  padding: 1em;
+  cursor: pointer;
+  /* Fat-finger friendliness */
+  /* padding:1em offsets it to the sides, pull it back in. */
+}
+
+.bar-wrapper--container {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  padding-right: 2.5em;
+}
+
+.admin-bar .bar-wrapper--container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   padding: 0;
-}.admin-bar {
+}
+
+.admin-bar {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   background-color: #16c9b3;
-}.admin-bar__edit-link {
-  padding: 11.36px
-    32px;
+}
+
+.admin-bar__edit-link {
+  padding: 12.78px
+    36px;
   padding: 0.71rem
     2rem;
   color: #fff;
   background-color: #3e51b5;
-}.admin-bar__title {
+}
+
+.admin-bar__title {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
