@@ -1,5 +1,5 @@
 @import '@economist/component-link-button';
-@import '@economist/component-bar-wrapper/index.css';
+@import '@economist/component-bar-wrapper';
 
 .admin-bar .bar-wrapper--container {
   display: flex;
