@@ -108,7 +108,7 @@
     "@economist/component-bar-wrapper": "^2.0.0",
     "@economist/component-link-button": "^3.0.1",
     "@economist/component-palette": "^1.5.0",
-    "react": "^0.14.8"
+    "react": "^15.0.2"
   },
   "devDependencies": {
     "@economist/doc-pack": "^1.0.6",
