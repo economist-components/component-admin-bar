@@ -220,7 +220,6 @@ body {
 
 .admin-bar .bar-wrapper--container {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   padding: 0;
@@ -242,11 +241,9 @@ body {
 }
 
 .admin-bar__title {
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   color: #fff;
