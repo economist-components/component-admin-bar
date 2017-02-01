@@ -20,6 +20,10 @@
   background-color: var(--admin-bar__button-background, #3e51b5);
 }
 
+.admin-bar__edit-link:not(:last-child) {
+  margin-right: var(--admin-bar__edit-link-vertical-padding, 0.71rem);
+}
+
 .admin-bar__title {
   align-self: center;
   flex: 1 1 auto;
