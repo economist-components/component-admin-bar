@@ -2,6 +2,29 @@ import React from 'react';
 import Button from '@economist/component-link-button';
 import BarWrapper from '@economist/component-bar-wrapper';
 
+function createButtonList({ label, url, className, key, target = '_blank', classNamePrefix }) {
+  const additionalClassname = (className) ? ` ${ className }` : '';
+  const props = {
+    href: url,
+    children: label,
+    className: `${ classNamePrefix }__edit-link${ additionalClassname }`,
+    key,
+    target,
+  };
+  return (<Button {...props} />);
+}
+
+function createOptionList({ label, url, className, key, classNamePrefix }) {
+  const additionalClassname = (className) ? ` ${ className }` : '';
+  const props = {
+    value: url,
+    children: label,
+    className: `${ classNamePrefix }__option${ additionalClassname }`,
+    key,
+  };
+  return (<option {...props} />);
+}
+
 export default function AdminBar({ classNamePrefix = 'admin-bar', className, title, menuList, mode }) {
   const classNamesList = [ classNamePrefix ];
   const children = [];
@@ -10,28 +33,6 @@ export default function AdminBar({ classNamePrefix = 'admin-bar', className, tit
   }
   const barWrapperClassName = classNamesList.join(' ');
   const adminTitle = title ? (<span key="title" className={`${ classNamePrefix }__title`}>{title}</span>) : null;
-  function createButtonList({ label, url, className, key, target = '_blank' }) {
-    const additionalClassname = (className) ? ` ${ className }` : '';
-    const props = {
-      href: url,
-      children: label,
-      className: `${ classNamePrefix }__edit-link${ additionalClassname }`,
-      key,
-      target,
-    };
-    return (<Button {...props} />);
-  }
-
-  function createOptionList({ label, url, className, key }) {
-    const additionalClassname = (className) ? ` ${ className }` : '';
-    const props = {
-      value: url,
-      children: label,
-      className: `${ classNamePrefix }__option${ additionalClassname }`,
-      key,
-    };
-    return (<option {...props} />);
-  }
 
   let renderChild = null;
   switch (mode) {
@@ -44,6 +45,7 @@ export default function AdminBar({ classNamePrefix = 'admin-bar', className, tit
 
   menuList.forEach((menuItem, index) => {
     menuItem.key = index;
+    menuItem.classNamePrefix = classNamePrefix;
     children.push(renderChild(menuItem));
   });
 
@@ -63,6 +65,7 @@ export default function AdminBar({ classNamePrefix = 'admin-bar', className, tit
       </select>
     );
   }
+
 
   return (
     <BarWrapper className={barWrapperClassName} close={false}>
@@ -84,5 +87,20 @@ if (process.env.NODE_ENV !== 'production') {
       className: React.PropTypes.string,
     })).isRequired,
     mode: React.PropTypes.oneOf([ 'dropdown' ]),
+  };
+  createButtonList.propTypes = {
+    label: React.PropTypes.string,
+    url: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
+    className: React.PropTypes.string,
+    key: React.PropTypes.string,
+    target: React.PropTypes.string,
+  };
+  createOptionList.propTypes = {
+    label: React.PropTypes.string,
+    url: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
+    className: React.PropTypes.string,
+    key: React.PropTypes.string,
   };
 }
