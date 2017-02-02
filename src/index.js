@@ -2,43 +2,105 @@ import React from 'react';
 import Button from '@economist/component-link-button';
 import BarWrapper from '@economist/component-bar-wrapper';
 
-export default function AdminBar({ className, title, editLinkHref, renderEditLink }) {
-  const classNamesList = [ 'admin-bar' ];
+function createButtonList({ label, url, className, key, target = '_blank', classNamePrefix }) {
+  const additionalClassname = (className) ? ` ${ className }` : '';
+  const props = {
+    href: url,
+    children: label,
+    className: `${ classNamePrefix }__edit-link${ additionalClassname }`,
+    key,
+    target,
+  };
+  return (<Button {...props} />);
+}
+
+function createOptionList({ label, url, className, key, classNamePrefix }) {
+  const additionalClassname = (className) ? ` ${ className }` : '';
+  const props = {
+    value: url,
+    children: label,
+    className: `${ classNamePrefix }__option${ additionalClassname }`,
+    key,
+  };
+  return (<option {...props} />);
+}
+
+export default function AdminBar({ classNamePrefix = 'admin-bar', className, title, menuList, mode }) {
+  const classNamesList = [ classNamePrefix ];
   const children = [];
   if (className) {
     classNamesList.push(className);
   }
-
   const barWrapperClassName = classNamesList.join(' ');
-  if (title) {
-    children.push((
-      <span key="title" className="admin-bar__title">{title}</span>
-    ));
+  const adminTitle = title ? (<span key="title" className={`${ classNamePrefix }__title`}>{title}</span>) : null;
+
+  let renderChild = null;
+  switch (mode) {
+    case 'dropdown':
+      renderChild = createOptionList;
+      break;
+    default:
+      renderChild = createButtonList;
   }
-  const editLinkDefaultProps = {
-    className: 'admin-bar__edit-link',
-    href: editLinkHref,
-    target: '_blank',
-    children: 'Edit this article',
-    key: 'editLink',
-  };
-  const editLinkButton = renderEditLink ? renderEditLink() : (
-    <Button {...editLinkDefaultProps} />
-  );
-  children.push(editLinkButton);
+
+  menuList.forEach((menuItem, index) => {
+    menuItem.key = index;
+    menuItem.classNamePrefix = classNamePrefix;
+    children.push(renderChild(menuItem));
+  });
+
+  function handleChange(event) {
+    // Ignore empty values.
+    if (event.target.value) {
+      window.open(event.target.value, '_blank');
+    }
+  }
+
+  let adminElements = children;
+  if (mode === 'dropdown') {
+    adminElements = (
+      <select className={`${ classNamePrefix }__select`} onChange={handleChange}>
+        <option value="">Please select an option</option>
+        {children}
+      </select>
+    );
+  }
+
+
   return (
     <BarWrapper className={barWrapperClassName} close={false}>
-      {children}
+      {adminTitle}
+      {adminElements}
     </BarWrapper>
   );
 }
 
 if (process.env.NODE_ENV !== 'production') {
   AdminBar.propTypes = {
+    classNamePrefix: React.PropTypes.string,
     className: React.PropTypes.string,
     children: React.PropTypes.node,
-    renderEditLink: React.PropTypes.func,
-    editLinkHref: React.PropTypes.string,
     title: React.PropTypes.string,
+    menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
+      label: React.PropTypes.string,
+      url: React.PropTypes.string,
+      className: React.PropTypes.string,
+    })).isRequired,
+    mode: React.PropTypes.oneOf([ 'dropdown' ]),
+  };
+  createButtonList.propTypes = {
+    label: React.PropTypes.string,
+    url: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
+    className: React.PropTypes.string,
+    key: React.PropTypes.string,
+    target: React.PropTypes.string,
+  };
+  createOptionList.propTypes = {
+    label: React.PropTypes.string,
+    url: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
+    className: React.PropTypes.string,
+    key: React.PropTypes.string,
   };
 }
