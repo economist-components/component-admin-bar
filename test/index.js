@@ -1,12 +1,16 @@
 import 'babel/polyfill';
 import AdminBar from '../src';
 import React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import chai from 'chai';
 import { mount, shallow } from 'enzyme';
 import Button from '@economist/component-link-button';
-chai.should();
-chai.use(chaiEnzyme());
+
+Enzyme.configure({ adapter: new Adapter() });
+chai.use(chaiEnzyme()).should();
+
 describe('A admin bar', () => {
   describe('it\'s a React component', () => {
     const menuLinks = [

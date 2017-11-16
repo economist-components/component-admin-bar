@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@economist/component-link-button';
 import BarWrapper from '@economist/component-bar-wrapper';
 
@@ -77,30 +78,30 @@ export default function AdminBar({ classNamePrefix = 'admin-bar', className, tit
 
 if (process.env.NODE_ENV !== 'production') {
   AdminBar.propTypes = {
-    classNamePrefix: React.PropTypes.string,
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    title: React.PropTypes.string,
-    menuList: React.PropTypes.arrayOf(React.PropTypes.shape({
-      label: React.PropTypes.string,
-      url: React.PropTypes.string,
-      className: React.PropTypes.string,
+    classNamePrefix: PropTypes.string,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    title: PropTypes.string,
+    menuList: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      url: PropTypes.string,
+      className: PropTypes.string,
     })).isRequired,
-    mode: React.PropTypes.oneOf([ 'dropdown' ]),
+    mode: PropTypes.oneOf([ 'dropdown' ]),
   };
   createButtonList.propTypes = {
-    label: React.PropTypes.string,
-    url: React.PropTypes.string,
-    classNamePrefix: React.PropTypes.string,
-    className: React.PropTypes.string,
-    key: React.PropTypes.string,
-    target: React.PropTypes.string,
+    label: PropTypes.string,
+    url: PropTypes.string,
+    classNamePrefix: PropTypes.string,
+    className: PropTypes.string,
+    key: PropTypes.string,
+    target: PropTypes.string,
   };
   createOptionList.propTypes = {
-    label: React.PropTypes.string,
-    url: React.PropTypes.string,
-    classNamePrefix: React.PropTypes.string,
-    className: React.PropTypes.string,
-    key: React.PropTypes.string,
+    label: PropTypes.string,
+    url: PropTypes.string,
+    classNamePrefix: PropTypes.string,
+    className: PropTypes.string,
+    key: PropTypes.string,
   };
 }
